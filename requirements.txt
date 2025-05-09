@@ -1,0 +1,6 @@
+flask
+flask_sqlalchemy
+sqlalchemy
+python-telegram-bot
+openai
+pkg_resources
