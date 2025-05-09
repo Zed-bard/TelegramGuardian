@@ -1,0 +1,26 @@
+{
+    "bot_name": "Telegram Group Manager Bot",
+    "version": "0.1.0",
+    "description": "A bot for managing group communications, user permissions, and automated interactions.",
+    "bot_token": "7696599961:AAErLd8Oidip-rccZ3G-n9YKzRQuoDQZboQ",
+    "colors": {
+        "primary": "#0088CC",
+        "secondary": "#32B1E6",
+        "alert": "#FF4242",
+        "success": "#4CAF50", 
+        "neutral": "#687983"
+    },
+    "permission_levels": {
+        "owner": 100,
+        "admin": 90,
+        "moderator": 50,
+        "regular": 10,
+        "restricted": 1,
+        "banned": 0
+    },
+    "moderation_enabled": true,
+    "auto_delete": false,
+    "welcome_enabled": true,
+    "welcome_message": "Welcome {username} to {group_name}! Please read the group rules.",
+    "rules": "Default rules for the group. Please follow community guidelines."
+}

@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation - Telegram Group Manager Bot</title>
+    <style>
+        :root {
+            --telegram-blue: #0088CC;
+            --light-blue: #32B1E6;
+            --warning-red: #FF4242;
+            --green: #4CAF50;
+            --grey: #687983;
+            --dark-grey: #333333;
+            --light-grey: #f5f5f5;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: var(--dark-grey);
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+        
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background-color: var(--telegram-blue);
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+            margin-bottom: 30px;
+        }
+        
+        h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+        
+        h2 {
+            border-bottom: 2px solid var(--light-blue);
+            padding-bottom: 10px;
+            margin-top: 30px;
+            color: var(--telegram-blue);
+        }
+        
+        h3 {
+            color: var(--telegram-blue);
+            margin-top: 25px;
+        }
+        
+        .logo {
+            width: 60px;
+            height: 60px;
+            background-color: white;
+            border-radius: 50%;
+            padding: 8px;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .logo img {
+            max-width: 40px;
+        }
+        
+        .subtitle {
+            font-size: 1.1rem;
+            margin-top: 10px;
+        }
+        
+        .docs-container {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .sidebar {
+            width: 250px;
+            flex-shrink: 0;
+            position: sticky;
+            top: 20px;
+            align-self: flex-start;
+        }
+        
+        .sidebar-nav {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 20px;
+        }
+        
+        .sidebar-nav h3 {
+            margin-top: 0;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .sidebar-nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .sidebar-nav li {
+            margin-bottom: 8px;
+        }
+        
+        .sidebar-nav a {
+            color: var(--dark-grey);
+            text-decoration: none;
+            display: block;
+            padding: 8px 10px;
+            border-radius: 4px;
+            transition: background-color 0.2s ease;
+        }
+        
+        .sidebar-nav a:hover {
+            background-color: var(--light-grey);
+            color: var(--telegram-blue);
+        }
+        
+        .content {
+            flex-grow: 1;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 30px;
+        }
+        
+        .command-card {
+            border: 1px solid #eee;
+            border-radius: 6px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .command-name {
+            background-color: var(--light-grey);
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        
+        .command-description {
+            margin-bottom: 10px;
+        }
+        
+        .command-usage {
+            background-color: #f5f5f5;
+            padding: 12px;
+            border-radius: 4px;
+            font-family: monospace;
+            white-space: pre-wrap;
+        }
+        
+        .command-examples h4 {
+            margin-bottom: 10px;
+            margin-top: 15px;
+        }
+        
+        .example {
+            background-color: #f5f5f5;
+            padding: 12px;
+            border-radius: 4px;
+            font-family: monospace;
+            margin-bottom: 10px;
+        }
+        
+        .note {
+            background-color: #e6f7ff;
+            border-left: 4px solid var(--light-blue);
+            padding: 12px;
+            margin: 15px 0;
+        }
+        
+        .permission-levels {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px 0;
+        }
+        
+        .permission-levels th, .permission-levels td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .permission-levels th {
+            background-color: var(--light-grey);
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--telegram-blue);
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .btn:hover {
+            background-color: var(--light-blue);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            color: var(--grey);
+            border-top: 1px solid #eee;
+        }
+        
+        @media (max-width: 900px) {
+            .docs-container {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+                position: static;
+                margin-bottom: 20px;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="/static/icon.svg" alt="Bot Logo">
+        </div>
+        <h1>Documentation</h1>
+        <p class="subtitle">Learn how to use the Telegram Group Manager Bot</p>
+    </header>
+    
+    <div class="container">
+        <div class="docs-container">
+            <aside class="sidebar">
+                <nav class="sidebar-nav">
+                    <h3>Contents</h3>
+                    <ul>
+                        <li><a href="#getting-started">Getting Started</a></li>
+                        <li><a href="#commands">Commands</a></li>
+                        <li><a href="#permissions">Permission Levels</a></li>
+                        <li><a href="#moderation">Moderation</a></li>
+                        <li><a href="#settings">Settings</a></li>
+                        <li><a href="#troubleshooting">Troubleshooting</a></li>
+                    </ul>
+                </nav>
+            </aside>
+            
+            <main class="content">
+                <section id="getting-started">
+                    <h2>Getting Started</h2>
+                    <p>Welcome to the Telegram Group Manager Bot documentation. This guide will help you understand how to use the bot effectively in your Telegram groups.</p>
+                    
+                    <h3>Adding the Bot to Your Group</h3>
+                    <ol>
+                        <li>Start a conversation with the bot by clicking <a href="https://t.me/kadhannaaCenter_bot" target="_blank">here</a> or searching for @kadhannaaCenter_bot in Telegram</li>
+                        <li>Send the /start command to initialize the bot</li>
+                        <li>Open your Telegram group</li>
+                        <li>Click on the group name at the top to access group info</li>
+                        <li>Tap "Add member"</li>
+                        <li>Search for and select the bot</li>
+                        <li>Once added, promote the bot to administrator for full functionality</li>
+                    </ol>
+                    
+                    <h3>Initial Configuration</h3>
+                    <p>After adding the bot to your group, you should configure the following settings:</p>
+                    <ol>
+                        <li>Set a welcome message using /welcome command</li>
+                        <li>Set group rules using /rules command</li>
+                        <li>Configure moderation settings using /settings command</li>
+                    </ol>
+                </section>
+                
+                <section id="commands">
+                    <h2>Commands</h2>
+                    <p>Here is a list of all available commands with their descriptions and usage examples:</p>
+                    
+                    {% for command in commands %}
+                    <div class="command-card">
+                        <div class="command-name">{{ command.cmd }}</div>
+                        <div class="command-description">{{ command.description }}</div>
+                        {% if command.cmd == "/welcome" %}
+                        <div class="command-usage">Usage: /welcome [new message]
+If no message is provided, shows the current welcome message.</div>
+                        <div class="command-examples">
+                            <h4>Examples:</h4>
+                            <div class="example">/welcome Welcome {username} to our group! Please read the rules.</div>
+                            <div class="example">/welcome</div>
+                        </div>
+                        <div class="note">
+                            <p>Available placeholders:</p>
+                            <ul>
+                                <li>{username} - The user's Telegram username or first name</li>
+                                <li>{group_name} - The name of the group</li>
+                            </ul>
+                        </div>
+                        {% elif command.cmd == "/rules" %}
+                        <div class="command-usage">Usage: /rules [new rules]
+If no rules are provided, shows the current group rules.</div>
+                        <div class="command-examples">
+                            <h4>Examples:</h4>
+                            <div class="example">/rules 1. Be respectful to others
+2. No spam or advertising
+3. Keep discussions on topic</div>
+                            <div class="example">/rules</div>
+                        </div>
+                        {% elif command.cmd == "/promote" %}
+                        <div class="command-usage">Usage: /promote @username [level]
+Level can be: trusted, moderator, admin (default: trusted)</div>
+                        <div class="command-examples">
+                            <h4>Examples:</h4>
+                            <div class="example">/promote @johndoe moderator</div>
+                            <div class="example">/promote @johndoe</div>
+                        </div>
+                        {% elif command.cmd == "/demote" %}
+                        <div class="command-usage">Usage: /demote @username [level]
+Level can be: regular, restricted (default: regular)</div>
+                        <div class="command-examples">
+                            <h4>Examples:</h4>
+                            <div class="example">/demote @johndoe</div>
+                        </div>
+                        {% elif command.cmd == "/ban" %}
+                        <div class="command-usage">Usage: /ban @username [reason]</div>
+                        <div class="command-examples">
+                            <h4>Examples:</h4>
+                            <div class="example">/ban @johndoe Repeated spamming</div>
+                        </div>
+                        {% elif command.cmd == "/settings" %}
+                        <div class="command-usage">Usage: /settings [setting] [value]
+If no arguments provided, shows all settings.</div>
+                        <div class="command-examples">
+                            <h4>Examples:</h4>
+                            <div class="example">/settings moderation on</div>
+                            <div class="example">/settings auto_delete off</div>
+                            <div class="example">/settings</div>
+                        </div>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                </section>
+                
+                <section id="permissions">
+                    <h2>Permission Levels</h2>
+                    <p>The bot uses a hierarchical permission system to control who can use certain commands:</p>
+                    
+                    <table class="permission-levels">
+                        <thead>
+                            <tr>
+                                <th>Level</th>
+                                <th>Value</th>
+                                <th>Description</th>
+                                <th>Permissions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Owner</td>
+                                <td>1000</td>
+                                <td>Group creator or designated owner</td>
+                                <td>Full access to all commands</td>
+                            </tr>
+                            <tr>
+                                <td>Admin</td>
+                                <td>100</td>
+                                <td>Group administrators</td>
+                                <td>Can use all moderation commands</td>
+                            </tr>
+                            <tr>
+                                <td>Moderator</td>
+                                <td>50</td>
+                                <td>Assigned moderators</td>
+                                <td>Can mute, warn, and configure some settings</td>
+                            </tr>
+                            <tr>
+                                <td>Trusted</td>
+                                <td>10</td>
+                                <td>Trusted members</td>
+                                <td>Immune to some automatic moderation</td>
+                            </tr>
+                            <tr>
+                                <td>Regular</td>
+                                <td>0</td>
+                                <td>Standard members</td>
+                                <td>Basic interaction commands</td>
+                            </tr>
+                            <tr>
+                                <td>Restricted</td>
+                                <td>-10</td>
+                                <td>Limited permissions</td>
+                                <td>Read-only access</td>
+                            </tr>
+                            <tr>
+                                <td>Banned</td>
+                                <td>-100</td>
+                                <td>Banned from the group</td>
+                                <td>No access</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+                
+                <section id="moderation">
+                    <h2>Moderation</h2>
+                    <p>The bot provides several tools for moderating your group:</p>
+                    
+                    <h3>Warning System</h3>
+                    <p>Users can be warned for inappropriate behavior using the /warn command. After a certain number of warnings (configurable), actions like mute or ban can be automatically applied.</p>
+                    
+                    <h3>Automated Moderation</h3>
+                    <p>When enabled, the bot can automatically detect and address:</p>
+                    <ul>
+                        <li>Spam and excessive message frequency</li>
+                        <li>Inappropriate language</li>
+                        <li>Unauthorized links or forwarded messages</li>
+                    </ul>
+                    
+                    <h3>Manual Actions</h3>
+                    <p>Moderators and admins can manually:</p>
+                    <ul>
+                        <li>Ban users from the group (/ban)</li>
+                        <li>Temporarily mute users (/mute)</li>
+                        <li>Remove restrictions (/unmute)</li>
+                        <li>Allow banned users back (/unban)</li>
+                    </ul>
+                </section>
+                
+                <section id="settings">
+                    <h2>Settings</h2>
+                    <p>The bot has several configurable settings:</p>
+                    
+                    <h3>Group Settings</h3>
+                    <ul>
+                        <li><strong>moderation_enabled</strong> - Enable/disable automatic moderation (on/off)</li>
+                        <li><strong>auto_delete</strong> - Automatically delete command messages after execution (on/off)</li>
+                        <li><strong>welcome_enabled</strong> - Enable/disable welcome messages (on/off)</li>
+                        <li><strong>max_warnings</strong> - Number of warnings before automatic action (1-10)</li>
+                    </ul>
+                    
+                    <p>To change a setting, use the command:</p>
+                    <div class="example">/settings [setting_name] [value]</div>
+                </section>
+                
+                <section id="troubleshooting">
+                    <h2>Troubleshooting</h2>
+                    
+                    <h3>Common Issues</h3>
+                    <ul>
+                        <li>
+                            <p><strong>The bot doesn't respond to commands</strong></p>
+                            <p>Solution: Make sure the bot is properly added to the group and has the necessary permissions.</p>
+                        </li>
+                        <li>
+                            <p><strong>Unable to use moderation commands</strong></p>
+                            <p>Solution: Check that you have the required permission level to use those commands.</p>
+                        </li>
+                        <li>
+                            <p><strong>Welcome messages aren't working</strong></p>
+                            <p>Solution: Verify that welcome_enabled is set to "on" in settings.</p>
+                        </li>
+                    </ul>
+                    
+                    <h3>Getting Help</h3>
+                    <p>If you encounter issues not covered in this documentation, you can:</p>
+                    <ul>
+                        <li>Use the /help command in Telegram for a quick reference</li>
+                        <li>Check for updates on the bot's channel</li>
+                        <li>Contact support if the issue persists</li>
+                    </ul>
+                </section>
+                
+                <a href="/" class="btn">Return to Home</a>
+            </main>
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; 2025 Telegram Group Manager Bot. All rights reserved.</p>
+    </footer>
+</body>
+</html>
